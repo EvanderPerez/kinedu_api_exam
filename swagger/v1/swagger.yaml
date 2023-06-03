@@ -23,6 +23,44 @@ paths:
       responses:
         '200':
           description: successful
+  "/tasks/{id}":
+    get:
+      summary: "#Show"
+      tags:
+      - Task
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: successful
+  "/tasks/":
+    post:
+      summary: "#Create"
+      tags:
+      - Task
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                task:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      example: Inc
+                    description:
+                      type: string
+                      example: totam
 servers:
 - url: "{defaultHost}"
   variables:

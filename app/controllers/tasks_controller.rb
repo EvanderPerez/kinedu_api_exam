@@ -4,7 +4,7 @@ class TasksController < ApplicationController
   # GET /tasks
   def index
     pagy, tasks = pagy(
-      TaskService.new(nil, filter_params).get_all
+      TaskService.new(nil, filter_params).index
     )
 
     render json: paginate_response_with_serializer(pagy, tasks, TaskSerializer)
@@ -12,18 +12,16 @@ class TasksController < ApplicationController
 
   # GET /tasks/:id
   def show
-    render json: @task
+    task = TaskService.new(nil, params).show
+
+    render json: task, serializer: TaskSerializer
   end
 
-  # POST /tasks
+  # POST /tasks/:id
   def create
-    @task = Task.new(task_params)
+    task = TaskService.new(nil, task_params).create
 
-    if @task.save
-      render json: @task, status: :created, location: @task
-    else
-      render json: @task.errors, status: :unprocessable_entity
-    end
+    render json: task, serializer: TaskSerializer
   end
 
   # PATCH/PUT /tasks/1
@@ -47,6 +45,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:name, :description)
+    params.require(:task).permit(:name, :description, :status)
   end
 end
