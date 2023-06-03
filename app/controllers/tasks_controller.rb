@@ -1,11 +1,13 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :update, :destroy]
+  include Pagy::Backend
 
   # GET /tasks
   def index
-    @tasks = Task.all
+    pagy, tasks = pagy(
+      TaskService.new(nil, filter_params).get_all
+    )
 
-    render json: @tasks
+    render json: paginate_response_with_serializer(pagy, tasks, TaskSerializer)
   end
 
   # GET /tasks/:id
@@ -39,13 +41,12 @@ class TasksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_task
-      @task = Task.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def task_params
-      params.require(:task).permit(:name, :description)
-    end
+  def filter_params
+    params.permit(:limit, :offset, :text, :status)
+  end
+
+  def task_params
+    params.require(:task).permit(:name, :description)
+  end
 end
