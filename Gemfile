@@ -23,6 +23,22 @@ gem 'pagy', '~> 3.5'
 # @see {https://github.com/pry/pry-rails}
 gem 'pry-rails', '~> 0.3.8'
 
+# RSwag
+# Seamlessly adds a Swagger to Rails-based API's 
+# @see {https://github.com/rswag/rswag}
+gem 'rswag-api'
+gem 'rswag-ui'
+
+# multi_json
+# Json coder for most of ruby gems, this was installed due to a bug
+# https://github.com/intridea/multi_json
+gem 'multi_json'
+
+# rack-cors:
+# Rack Middleware for handling Cross-Origin Resource Sharing (CORS)
+# @see {https://github.com/cyu/rack-cors}
+gem 'rack-cors', '~> 1.0.2'
+
 # active_model_serializers
 # ActiveModel::Serializers allows you to generate your JSON in an object-oriented and convention-driven manner.
 # @see {https://github.com/rails-api/active_model_serializers}
@@ -36,6 +52,12 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 
   gem 'pry-byebug'
+
+  # Rspec necessary gems
+  gem 'rspec-rails', '3.8.0'
+  gem 'rswag-specs'
+  gem 'factory_bot_rails', '4.11.1'
+  gem 'faker', '1.9.1'
 end
 
 group :development do
