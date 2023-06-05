@@ -78,4 +78,66 @@ RSpec.describe 'tasks', type: :request do
       end
     end
   end
+
+  describe 'Update method for tasks' do
+    path '/tasks/{id}' do
+      put('#Update') do
+        tags 'Task'
+        consumes 'application/json'
+        produces 'application/json'
+        parameter name: :id, in: :path, type: :integer, required: true
+        parameter name: :task, in: :body, schema: {
+          type: :object,
+          properties: {
+            task: {
+              type: :object,
+              properties: {
+                name: { type: :string, example: Faker::Company.suffix },
+                description: { type: :string, example: Faker::Lorem.word },
+                stats: { type: :string, example: 'done'}
+              }
+            }
+          }
+        }
+
+        response(200, 'successful') do
+          let(:task_model) { create(:task) }
+          let(:task_params) { build(:task, status: :in_progress).as_json }
+          let(:id) { task_model.id }
+
+          let(:task) do
+            {
+              task: task_params
+            }
+          end
+
+          run_test! do |response|
+            expect(response.parsed_body['id']).to eq(id)
+            expect(response.parsed_body['name']).to eq(task_params['name'])
+            expect(response.parsed_body['status']).to eq('in_progress')
+          end
+        end
+      end
+    end
+  end
+
+  describe 'Destroy method for tasks' do
+    path '/tasks/{id}' do
+      delete('#Destroy') do
+        tags 'Task'
+        consumes 'application/json'
+        produces 'application/json'
+        parameter name: :id, in: :path, type: :integer, required: true
+
+        response(200, 'successful') do
+          let(:task_model) { create(:task) }
+          let(:id) { task_model.id }
+
+          run_test! do |response|
+            expect(response.parsed_body['success']).to eq(true)
+          end
+        end
+      end
+    end
+  end
 end
