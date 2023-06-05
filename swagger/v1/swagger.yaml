@@ -37,6 +37,50 @@ paths:
       responses:
         '200':
           description: successful
+    put:
+      summary: "#Update"
+      tags:
+      - Task
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                task:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      example: LLC
+                    description:
+                      type: string
+                      example: voluptates
+                    stats:
+                      type: string
+                      example: done
+    delete:
+      summary: "#Destroy"
+      tags:
+      - Task
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: successful
   "/tasks/":
     post:
       summary: "#Create"
@@ -57,10 +101,10 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Inc
+                      example: and Sons
                     description:
                       type: string
-                      example: totam
+                      example: dicta
 servers:
 - url: "{defaultHost}"
   variables:
