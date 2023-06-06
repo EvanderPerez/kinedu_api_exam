@@ -1,6 +1,8 @@
 class Task < ApplicationRecord
+  # Enums
   enum status: { created: 1, in_progress: 2, done: 3 }
 
+  # Scopes
   scope :by_client, ->(client) do
     return unless client.present?
 

@@ -39,6 +39,10 @@ gem 'multi_json'
 # @see {https://github.com/cyu/rack-cors}
 gem 'rack-cors', '~> 1.0.2'
 
+# bcrypt:
+# Use Active Model has_secure_password
+gem 'bcrypt', '~> 3.1.7'
+
 # active_model_serializers
 # ActiveModel::Serializers allows you to generate your JSON in an object-oriented and convention-driven manner.
 # @see {https://github.com/rails-api/active_model_serializers}
