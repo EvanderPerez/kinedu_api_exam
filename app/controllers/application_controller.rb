@@ -1,4 +1,4 @@
 class ApplicationController < ActionController::API
-  include PaginationConcern
-
+  include SerializationConcern
+  include SessionConcern
 end

@@ -1,6 +1,8 @@
 require 'swagger_helper'
 
 RSpec.describe 'tasks', type: :request do
+  include_context 'create user for log-in'
+
   describe 'Index method for tasks' do
     path '/tasks' do
       get('#Index') do
@@ -10,10 +12,11 @@ RSpec.describe 'tasks', type: :request do
         parameter name: :status, in: :query, type: :string, required: false
         parameter name: :text, in: :query, type: :string, required: false
 
+        include_context 'headers for swagger'
+
         before do
           create_list(:task, 3)
         end
-
         response(200, 'successful') do
           run_test! do |response|
             expect(response.parsed_body['results'].count).to eq(3)
@@ -31,12 +34,14 @@ RSpec.describe 'tasks', type: :request do
         produces 'application/json'
         parameter name: :id, in: :path, type: :integer, required: true
 
+        include_context 'headers for swagger'
+
         let(:task) { create(:task) }
         let(:id) { task.id }
 
         response(200, 'successful') do
           run_test! do |response|
-            expect(response.parsed_body['name']).to eq(task.name)
+            expect(response.parsed_body['result']['name']).to eq(task.name)
           end
         end
       end
@@ -62,6 +67,8 @@ RSpec.describe 'tasks', type: :request do
           }
         }
 
+        include_context 'headers for swagger'
+
         response(200, 'successful') do
           let(:task_params) { build(:task).as_json }
 
@@ -72,7 +79,7 @@ RSpec.describe 'tasks', type: :request do
           end
 
           run_test! do |response|
-            expect(response.parsed_body['name']).to eq(task_params['name'])
+            expect(response.parsed_body['result']['name']).to eq(task_params['name'])
           end
         end
       end
@@ -100,6 +107,8 @@ RSpec.describe 'tasks', type: :request do
           }
         }
 
+        include_context 'headers for swagger'
+
         response(200, 'successful') do
           let(:task_model) { create(:task) }
           let(:task_params) { build(:task, status: :in_progress).as_json }
@@ -112,9 +121,9 @@ RSpec.describe 'tasks', type: :request do
           end
 
           run_test! do |response|
-            expect(response.parsed_body['id']).to eq(id)
-            expect(response.parsed_body['name']).to eq(task_params['name'])
-            expect(response.parsed_body['status']).to eq('in_progress')
+            expect(response.parsed_body['result']['id']).to eq(id)
+            expect(response.parsed_body['result']['name']).to eq(task_params['name'])
+            expect(response.parsed_body['result']['status']).to eq('in_progress')
           end
         end
       end
@@ -128,6 +137,8 @@ RSpec.describe 'tasks', type: :request do
         consumes 'application/json'
         produces 'application/json'
         parameter name: :id, in: :path, type: :integer, required: true
+
+        include_context 'headers for swagger'
 
         response(200, 'successful') do
           let(:task_model) { create(:task) }
