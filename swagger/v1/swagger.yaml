@@ -4,7 +4,28 @@ info:
   title: API V1
   version: v1
 paths:
-  "/tasks":
+  "/api/v1/log_in/":
+    post:
+      summary: "#log_in"
+      tags:
+      - Session
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: pedro@kuhn.io
+                password:
+                  type: string
+                  example: 6yRqIfUi4
+  "/api/v1/tasks":
     get:
       summary: "#Index"
       tags:
@@ -20,10 +41,18 @@ paths:
         required: false
         schema:
           type: string
+      - name: access-token
+        in: header
+        schema:
+          type: string
+      - name: user-id
+        in: header
+        schema:
+          type: string
       responses:
         '200':
           description: successful
-  "/tasks/{id}":
+  "/api/v1/tasks/{id}":
     get:
       summary: "#Show"
       tags:
@@ -34,6 +63,14 @@ paths:
         required: true
         schema:
           type: integer
+      - name: access-token
+        in: header
+        schema:
+          type: string
+      - name: user-id
+        in: header
+        schema:
+          type: string
       responses:
         '200':
           description: successful
@@ -47,6 +84,14 @@ paths:
         required: true
         schema:
           type: integer
+      - name: access-token
+        in: header
+        schema:
+          type: string
+      - name: user-id
+        in: header
+        schema:
+          type: string
       responses:
         '200':
           description: successful
@@ -64,7 +109,7 @@ paths:
                       example: LLC
                     description:
                       type: string
-                      example: voluptates
+                      example: adipisci
                     stats:
                       type: string
                       example: done
@@ -78,15 +123,31 @@ paths:
         required: true
         schema:
           type: integer
+      - name: access-token
+        in: header
+        schema:
+          type: string
+      - name: user-id
+        in: header
+        schema:
+          type: string
       responses:
         '200':
           description: successful
-  "/tasks/":
+  "/api/v1/tasks/":
     post:
       summary: "#Create"
       tags:
       - Task
-      parameters: []
+      parameters:
+      - name: access-token
+        in: header
+        schema:
+          type: string
+      - name: user-id
+        in: header
+        schema:
+          type: string
       responses:
         '200':
           description: successful
@@ -101,10 +162,113 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: and Sons
+                      example: Group
                     description:
                       type: string
-                      example: dicta
+                      example: quo
+  "/api/v1/users":
+    get:
+      summary: "#Index"
+      tags:
+      - User
+      responses:
+        '200':
+          description: successful
+  "/api/v1/users/{id}":
+    get:
+      summary: "#Show"
+      tags:
+      - User
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: "#Update"
+      tags:
+      - User
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: access-token
+        in: header
+        schema:
+          type: string
+      - name: user-id
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                      example: annalee@hansen.io
+                    password:
+                      type: string
+                      example: UzNa09IoV
+    delete:
+      summary: "#Destroy"
+      tags:
+      - User
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: access-token
+        in: header
+        schema:
+          type: string
+      - name: user-id
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+  "/api/v1/users/":
+    post:
+      summary: "#Create"
+      tags:
+      - User
+      parameters: []
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                      example: charlie@bosco.name
+                    password:
+                      type: string
+                      example: QhI60aQq
 servers:
 - url: "{defaultHost}"
   variables:

@@ -10,8 +10,6 @@ RSpec.describe "Users", type: :request do
         consumes 'application/json'
         produces 'application/json'
 
-        include_context 'headers for swagger'
-
         before do
           create_list(:user, 3)
         end
@@ -31,8 +29,6 @@ RSpec.describe "Users", type: :request do
         consumes 'application/json'
         produces 'application/json'
         parameter name: :id, in: :path, type: :integer, required: true
-
-        include_context 'headers for swagger'
 
         let(:user) { create(:user) }
         let(:id) { user.id }
@@ -64,8 +60,6 @@ RSpec.describe "Users", type: :request do
             }
           }
         }
-
-        include_context 'headers for swagger'
 
         response(200, 'successful') do
           let(:user_params) { build(:user).as_json }

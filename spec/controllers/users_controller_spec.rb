@@ -12,7 +12,9 @@ RSpec.describe Api::V1::UsersController, type: :request do
 
     it 'should get all users' do
       get '/api/v1/users'
-      expect(response.parsed_body['results'].count).to eq 4 
+      # The result count is higher because I have already created an user for login
+      #   and the common user for the Show, Update and Destroy methods
+      expect(response.parsed_body['results'].count).to eq 4
     end
   end
 

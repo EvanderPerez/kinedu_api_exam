@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe Api::V1::TasksController, type: :request do
   include_context 'log-in'
 
-  let!(:task) { create(:task) }
+  let!(:user) { create(:user) }
+  let!(:task) { create(:task, created_by: user) }
 
   describe 'GET /tasks' do
     before do
@@ -24,7 +25,7 @@ RSpec.describe Api::V1::TasksController, type: :request do
   end
 
   describe 'POST /tasks/' do
-    let(:task_params) { attributes_for(:task) }
+    let(:task_params) { attributes_for(:task, created_by: user) }
     let(:params) do
       {
         task: task_params
