@@ -4,7 +4,7 @@ RSpec.describe 'tasks', type: :request do
   include_context 'create user for log-in'
 
   describe 'Index method for tasks' do
-    path '/tasks' do
+    path '/api/v1/tasks' do
       get('#Index') do
         tags 'Task'
         consumes 'application/json'
@@ -27,7 +27,7 @@ RSpec.describe 'tasks', type: :request do
   end
 
   describe 'Show method for tasks' do
-    path '/tasks/{id}' do
+    path '/api/v1/tasks/{id}' do
       get('#Show') do
         tags 'Task'
         consumes 'application/json'
@@ -49,7 +49,7 @@ RSpec.describe 'tasks', type: :request do
   end
 
   describe 'Create method for tasks' do
-    path '/tasks/' do
+    path '/api/v1/tasks/' do
       post('#Create') do
         tags 'Task'
         consumes 'application/json'
@@ -87,7 +87,7 @@ RSpec.describe 'tasks', type: :request do
   end
 
   describe 'Update method for tasks' do
-    path '/tasks/{id}' do
+    path '/api/v1/tasks/{id}' do
       put('#Update') do
         tags 'Task'
         consumes 'application/json'
@@ -131,7 +131,7 @@ RSpec.describe 'tasks', type: :request do
   end
 
   describe 'Destroy method for tasks' do
-    path '/tasks/{id}' do
+    path '/api/v1/tasks/{id}' do
       delete('#Destroy') do
         tags 'Task'
         consumes 'application/json'
