@@ -21,10 +21,10 @@ paths:
               properties:
                 email:
                   type: string
-                  example: pedro@kuhn.io
+                  example: evanderperez@hotmail.com
                 password:
                   type: string
-                  example: 6yRqIfUi4
+                  example: pass123
   "/api/v1/tasks":
     get:
       summary: "#Index"
@@ -106,10 +106,10 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: LLC
+                      example: Inc
                     description:
                       type: string
-                      example: adipisci
+                      example: sequi
                     stats:
                       type: string
                       example: done
@@ -162,10 +162,10 @@ paths:
                   properties:
                     name:
                       type: string
-                      example: Group
+                      example: Inc
                     description:
                       type: string
-                      example: quo
+                      example: nisi
   "/api/v1/users":
     get:
       summary: "#Index"
@@ -220,10 +220,10 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: annalee@hansen.io
+                      example: leila@cummings.name
                     password:
                       type: string
-                      example: UzNa09IoV
+                      example: E6XwEbXuIsWl
     delete:
       summary: "#Destroy"
       tags:
@@ -265,10 +265,10 @@ paths:
                   properties:
                     email:
                       type: string
-                      example: charlie@bosco.name
+                      example: fabiolamccullough@harberschmitt.com
                     password:
                       type: string
-                      example: QhI60aQq
+                      example: NtRt2f8oVc
 servers:
 - url: "{defaultHost}"
   variables:
