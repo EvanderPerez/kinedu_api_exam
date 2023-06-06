@@ -16,7 +16,7 @@ This project is based on Ruby on Rails and Postgresql
 # Testing steps
 * $ bundle exec rspec 
 
-# How to use swagger for this project
+# How to use authentication on swagger
 * 1.- Create an account on POST /api/v1/users.
 * 2.- Put the user email and password on POST /api/v1/log_in, on the response you will receive the user_id and access-token, make sure you copy them.
 * 3.- In any endpoint you want to use, put the access-token and user_id values on the header paramethers. 
