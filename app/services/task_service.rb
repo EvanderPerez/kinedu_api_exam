@@ -3,10 +3,12 @@ class TaskService
     @current_user = user
     @params = params
     @task_id = task_id || params[:id]
-    @task =  Task.find(@task_id) if @task_id
+    # This global variable is more focused to not repeat the same find method
+    @task =  Task.find_by(id: @task_id) if @task_id
   end
 
   def index
+    # limit and offset scopes are directly of the pagination gem
     Task.by_text(@params[:text])
         .by_status(@params[:status])
         .limit(@params[:limit])
