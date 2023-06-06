@@ -54,6 +54,8 @@ RSpec.describe "Users", type: :request do
             user: {
               type: :object,
               properties: {
+                first_name: { type: :string, example: Faker::Lorem.word },
+                last_name: { type: :string, example: Faker::Lorem.word },
                 email: { type: :string, example: Faker::Internet.email },
                 password: { type: :string, example: Faker::Internet.password }
               }
@@ -91,6 +93,8 @@ RSpec.describe "Users", type: :request do
             user: {
               type: :object,
               properties: {
+                first_name: { type: :string, example: Faker::Lorem.word },
+                last_name: { type: :string, example: Faker::Lorem.word },
                 email: { type: :string, example: Faker::Internet.email },
                 password: { type: :string, example: Faker::Internet.password }
               }

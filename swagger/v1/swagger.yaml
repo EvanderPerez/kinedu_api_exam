@@ -109,8 +109,8 @@ paths:
                       example: Inc
                     description:
                       type: string
-                      example: sequi
-                    stats:
+                      example: facilis
+                    status:
                       type: string
                       example: done
     delete:
@@ -165,7 +165,7 @@ paths:
                       example: Inc
                     description:
                       type: string
-                      example: nisi
+                      example: voluptates
   "/api/v1/users":
     get:
       summary: "#Index"
@@ -218,12 +218,18 @@ paths:
                 user:
                   type: object
                   properties:
+                    first_name:
+                      type: string
+                      example: aut
+                    last_name:
+                      type: string
+                      example: velit
                     email:
                       type: string
-                      example: leila@cummings.name
+                      example: cyrus@hamill.name
                     password:
                       type: string
-                      example: E6XwEbXuIsWl
+                      example: XdTfKvA2LkG4HiPr
     delete:
       summary: "#Destroy"
       tags:
@@ -263,12 +269,18 @@ paths:
                 user:
                   type: object
                   properties:
+                    first_name:
+                      type: string
+                      example: perferendis
+                    last_name:
+                      type: string
+                      example: autem
                     email:
                       type: string
-                      example: fabiolamccullough@harberschmitt.com
+                      example: collin@dicki.info
                     password:
                       type: string
-                      example: NtRt2f8oVc
+                      example: P2C6O68lG21
 servers:
 - url: "{defaultHost}"
   variables:

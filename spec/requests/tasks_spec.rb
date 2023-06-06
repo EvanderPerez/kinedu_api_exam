@@ -103,7 +103,7 @@ RSpec.describe 'tasks', type: :request do
               properties: {
                 name: { type: :string, example: Faker::Company.suffix },
                 description: { type: :string, example: Faker::Lorem.word },
-                stats: { type: :string, example: 'done'}
+                status: { type: :string, example: 'done'}
               }
             }
           }
