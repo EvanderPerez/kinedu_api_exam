@@ -8,6 +8,9 @@ class User < ApplicationRecord
                     format: { with: EMAIL_REGEX }, 
                     uniqueness: { case_sensitive: false }
 
+  # Associations
+  has_many :tasks
+
   # Callbacks
   before_create :add_token
   has_secure_password

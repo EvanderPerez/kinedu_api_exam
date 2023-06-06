@@ -3,6 +3,8 @@ require 'swagger_helper'
 RSpec.describe 'tasks', type: :request do
   include_context 'create user for log-in'
 
+  let!(:user) { create(:user) }
+
   describe 'Index method for tasks' do
     path '/api/v1/tasks' do
       get('#Index') do
@@ -15,7 +17,7 @@ RSpec.describe 'tasks', type: :request do
         include_context 'headers for swagger'
 
         before do
-          create_list(:task, 3)
+          create_list(:task, 3, created_by: user)
         end
         response(200, 'successful') do
           run_test! do |response|
@@ -36,7 +38,7 @@ RSpec.describe 'tasks', type: :request do
 
         include_context 'headers for swagger'
 
-        let(:task) { create(:task) }
+        let(:task) { create(:task, created_by: user) }
         let(:id) { task.id }
 
         response(200, 'successful') do
@@ -70,7 +72,7 @@ RSpec.describe 'tasks', type: :request do
         include_context 'headers for swagger'
 
         response(200, 'successful') do
-          let(:task_params) { build(:task).as_json }
+          let(:task_params) { build(:task, created_by: user).as_json }
 
           let(:task) do
             {
@@ -110,7 +112,7 @@ RSpec.describe 'tasks', type: :request do
         include_context 'headers for swagger'
 
         response(200, 'successful') do
-          let(:task_model) { create(:task) }
+          let(:task_model) { create(:task, created_by: user) }
           let(:task_params) { build(:task, status: :in_progress).as_json }
           let(:id) { task_model.id }
 
@@ -141,7 +143,7 @@ RSpec.describe 'tasks', type: :request do
         include_context 'headers for swagger'
 
         response(200, 'successful') do
-          let(:task_model) { create(:task) }
+          let(:task_model) { create(:task, created_by: user) }
           let(:id) { task_model.id }
 
           run_test! do |response|

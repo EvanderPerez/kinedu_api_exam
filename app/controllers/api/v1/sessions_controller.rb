@@ -7,7 +7,7 @@ module Api
           @user.change_token
           save_session(@user)
           @current_user = @user
-          render json:  "user_id = #{@current_user.id} access_token: #{@current_user.access_token}"
+          render json: { user_id: @current_user.id, access_token: @current_user.access_token }
         else
           # I can use I18n gem for make an internationalizated message
           render json:  'Usuario no encontrado'

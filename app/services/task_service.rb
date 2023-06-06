@@ -20,7 +20,7 @@ class TaskService
   end
 
   def create
-    Task.create(@params)
+    Task.create(@params.merge!(created_by_id: @current_user.id))
   end
 
   def update
